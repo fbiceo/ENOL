@@ -1,0 +1,9 @@
+C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Release\ENOL.exe.config
+C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Release\ENOL.exe
+C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Release\ENOL.pdb
+C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Release\Modbus.dll
+C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Release\log4net.dll
+C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Release\Unme.Common.dll
+C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Release\ENOL.csprojResolveAssemblyReference.cache
+C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Release\ENOL.exe
+C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Release\ENOL.pdb

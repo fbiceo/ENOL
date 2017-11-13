@@ -1,0 +1,9 @@
+c:\users\chungmin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Debug\ENOL.exe.config
+c:\users\chungmin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Debug\ENOL.exe
+c:\users\chungmin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Debug\ENOL.pdb
+c:\users\chungmin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Debug\ENOL.csprojResolveAssemblyReference.cache
+c:\users\chungmin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Debug\ENOL.exe
+c:\users\chungmin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Debug\ENOL.pdb
+C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Debug\Modbus.dll
+C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Debug\log4net.dll
+C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Debug\Unme.Common.dll
