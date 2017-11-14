@@ -7,3 +7,4 @@ c:\users\chungmin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Debug\ENOL
 C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Debug\Modbus.dll
 C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Debug\log4net.dll
 C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Debug\Unme.Common.dll
+C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Debug\MadMilkman.Ini.dll

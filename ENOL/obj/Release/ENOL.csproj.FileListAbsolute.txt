@@ -7,3 +7,4 @@ C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\bin\Release\Un
 C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Release\ENOL.csprojResolveAssemblyReference.cache
 C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Release\ENOL.exe
 C:\Users\ChungMin\documents\visual studio 2015\Projects\ENOL\ENOL\obj\Release\ENOL.pdb
+C:\Users\ChungMin\Documents\Visual Studio 2015\Projects\ENOL\ENOL\bin\Release\MadMilkman.Ini.dll

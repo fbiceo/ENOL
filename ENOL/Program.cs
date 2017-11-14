@@ -8,9 +8,9 @@ using System.Net;
 using System.Net.Sockets;
 using Modbus.Device;
 using System.Threading;
-using System.Net;
 using System.Collections.Specialized;
 using System.Collections;
+using MadMilkman.Ini;
 
 namespace ENOL
 {
@@ -26,7 +26,7 @@ namespace ENOL
             sum_power /= 1000;
             return sum_power;
         }
-        static void save_data(string building,string node, string datetime,string value)
+        static void save_data(string building,string node, string datetime,string value,string logurl)
         {
             using (var client = new WebClient())
             {
@@ -38,7 +38,7 @@ namespace ENOL
                 
                 try
                 {
-                    var response = client.UploadValues("http://192.168.1.88/log", values);
+                    var response = client.UploadValues(logurl, values);
                     var responseString = Encoding.Default.GetString(response);
                     Console.WriteLine(datetime + "__________" + value + "______紀錄成功");
                 }
@@ -49,45 +49,54 @@ namespace ENOL
             }
         }
         static void Main(string[] args)
-        {            
-            int port = 502;
-            bool war = false;
-            IPAddress address = new IPAddress(new byte[] { 10, 1, 3, 40 });            
-            // create the master
-            TcpClient masterTcpClient = new TcpClient(address.ToString(), port);
-            ModbusIpMaster master = ModbusIpMaster.CreateIp(masterTcpClient);
-            master.Transport.ReadTimeout = master.Transport.WriteTimeout = 1000;
-            Hashtable node_data = new Hashtable();
-            
+        {
+            IniOptions option = new IniOptions();
+            option.CommentStarter = IniCommentStarter.Hash;
+
+            // Load INI file from path, Stream or TextReader.
+            IniFile ini = new IniFile(option);
+            ini.Load("config.ini");
+            //IniSection sec = ini.Sections["PM5350"];            
             while (true)
             {
-                string dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                string building = "1";
-                ushort[] inputs = master.ReadHoldingRegisters(2, 3203, 4);                               
-                node_data.Add(2, register_to_double(inputs));                
-
-                for (byte i=16;i<24;i++)
+                foreach (IniSection sec in ini.Sections)
                 {
-                    inputs = master.ReadHoldingRegisters(i, 1007, 4);                    
-                    node_data.Add(i, register_to_double(inputs));
-                    //Thread.Sleep(100);                  
-                }
+                    String Building = sec.Keys["BUILDING"].Value;
+                    String[] Nodes = sec.Keys["NODE"].Value.Split(',');
+                    String IP = sec.Keys["IP"].Value;
+                    String Port = sec.Keys["PORT"].Value;
+                    String Register = sec.Keys["REGISTER"].Value;
+                    String Length = sec.Keys["LENGTH"].Value;
+                    bool Log = Boolean.Parse(sec.Keys["LOG"].Value);
+                    String Logurl = sec.Keys["LOGURL"].Value;
+                    int LogInterval = int.Parse(sec.Keys["LOGINTERVAL"].Value);
 
-                foreach (DictionaryEntry node in node_data)
-                {
-                    Console.Write("Datetime: " + dt);
-                    Console.Write("Building: " + building);
-                    Console.Write("Node: " + node.Key.ToString());
-                    Console.WriteLine("KWh: " + node.Value.ToString());
+                    IPAddress address = IPAddress.Parse(IP);
+                    // create the master
+                    TcpClient masterTcpClient = new TcpClient(address.ToString(), int.Parse(Port));
+                    ModbusIpMaster master = ModbusIpMaster.CreateIp(masterTcpClient);
+                    master.Transport.ReadTimeout = master.Transport.WriteTimeout = 1000;
 
-                    if ((DateTime.Now.Minute) % 15 == 0 && war)
+                    string dt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    foreach (String node in Nodes)
                     {
-                        save_data(building, node.Key.ToString(), dt, node.Value.ToString());
+                        ushort[] inputs = master.ReadHoldingRegisters(byte.Parse(node), ushort.Parse(Register), ushort.Parse(Length));
+
+                        Console.Write("Datetime: " + dt);
+                        Console.Write("Building: " + Building);
+                        Console.Write("Node: " + node);
+                        Console.Write("Register: " + Register);
+                        Console.WriteLine("Value: " + register_to_double(inputs).ToString());
+
+                        if (Log && ((DateTime.Now.Minute) % LogInterval == 0))
+                        {
+                            save_data(Building, node, dt, register_to_double(inputs).ToString(),Logurl);
+                        }
                     }
+                    master.Dispose();
                 }
-                node_data.Clear();
                 Thread.Sleep(60 * 1000);
-            }                                   
+            }                            
         }
     }
 }

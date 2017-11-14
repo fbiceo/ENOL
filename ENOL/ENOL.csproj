@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MadMilkman.Ini">
+      <HintPath>..\..\..\..\..\Downloads\MadMilkman.Ini.dll</HintPath>
+    </Reference>
     <Reference Include="Modbus">
       <HintPath>..\..\..\..\..\Downloads\NModbus_net-3.5_1.11.0.0\bin\net\Modbus.dll</HintPath>
     </Reference>
